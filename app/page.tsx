@@ -1,5 +1,5 @@
-import { Search } from 'lucide-react';
 import Link from 'next/link';
+import UserProfile from '@/components/UserProfile';
 
 export default function Home() {
   return (
@@ -41,7 +41,6 @@ export default function Home() {
                 ></path>{' '}
               </svg>
             </button>
-            <section></section>
             <div className="lg:px-6 2xl:flex 2xl:w-full 2xl:max-w-[16rem] 3xl:!max-w-sm">
               <Link aria-label="Examine Home Page" href="/">
                 <svg
@@ -81,14 +80,10 @@ export default function Home() {
                 aria-label="Main"
                 data-orientation="horizontal"
                 dir="ltr"
-                className="relative z-10 flex max-w-max flex-1 items-center justify-center last:[&amp;>.viewport]:right-0"
+                className="relative z-10 flex max-w-max flex-1 items-center justify-center"
               >
-                <div style={{ position: 'relative' }}>
-                  <ul
-                    data-orientation="horizontal"
-                    className="group flex flex-1 list-none items-center justify-center space-x-1"
-                    dir="ltr"
-                  >
+                <div className="relative">
+                  <ul className="group">
                     <li>
                       <button className="group text-gray-600 inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50  whitespace-nowrap decoration-2 hover:text-primary hover:underline xl:px-3 group">
                         <a href="#">
@@ -124,43 +119,10 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-                <div className="absolute top-full flex justify-center viewport"></div>
               </nav>
             </div>
           </div>
-          <div className="flex items-center lg:hidden">
-            <a
-              className="flex flex-1 flex-row-reverse items-center gap-1 text-white lg:hidden"
-              href="/members/profile/"
-            >
-              <span className="max-w-20 overflow-hidden text-ellipsis whitespace-pre">
-                Joel Pablo
-              </span>
-              <svg
-                width="26"
-                height="25"
-                viewBox="0 0 26 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-white"
-              >
-                <path
-                  d="M21.8149 3.66116C19.454 1.30024 16.3149 0 12.9761 0C9.63726 0 6.49815 1.30024 4.13723 3.66116C1.77631 6.02207 0.476074 9.16119 0.476074 12.5C0.476074 15.8388 1.77631 18.9779 4.13723 21.3388C6.49815 23.6998 9.63726 25 12.9761 25C16.3149 25 19.454 23.6998 21.8149 21.3388C24.1758 18.9779 25.4761 15.8388 25.4761 12.5C25.4761 9.16119 24.1758 6.02207 21.8149 3.66116V3.66116ZM5.90115 20.9618C6.3139 17.4103 9.36737 14.6683 12.9761 14.6683C14.8785 14.6683 16.6674 15.4095 18.013 16.7549C19.1498 17.8919 19.8668 19.3764 20.0512 20.9616C18.1343 22.567 15.6662 23.5352 12.9761 23.5352C10.2859 23.5352 7.81803 22.5672 5.90115 20.9618V20.9618ZM12.9761 13.1596C10.8828 13.1596 9.1795 11.4563 9.1795 9.36298C9.1795 7.26948 10.8828 5.56641 12.9761 5.56641C15.0694 5.56641 16.7727 7.26948 16.7727 9.36298C16.7727 11.4563 15.0694 13.1596 12.9761 13.1596ZM21.312 19.7233C20.9387 18.2184 20.1603 16.8308 19.0487 15.7192C18.1484 14.819 17.0834 14.1436 15.9218 13.7203C17.3182 12.7733 18.2375 11.1734 18.2375 9.36298C18.2375 6.46191 15.8772 4.10156 12.9761 4.10156C10.075 4.10156 7.71465 6.46191 7.71465 9.36298C7.71465 11.1744 8.63476 12.7748 10.0323 13.7217C8.96358 14.1111 7.97462 14.7133 7.12376 15.506C5.89161 16.6534 5.03597 18.1166 4.63924 19.7222C2.95906 17.7853 1.94092 15.2594 1.94092 12.5C1.94092 6.41518 6.89125 1.46484 12.9761 1.46484C19.0609 1.46484 24.0112 6.41518 24.0112 12.5C24.0112 15.2599 22.9927 17.7864 21.312 19.7233V19.7233Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </a>
-            <button
-              className="flex items-center gap-1 transition-colors duration-200 disabled:cursor-not-allowed text-primary bg-transparent active:bg-gray-200 active:text-examine-purple-700 disabled:text-gray-500 text-base rounded p-0 hover:bg-transparent"
-              aria-label="Open search dialog"
-            >
-              <div className="search flex items-center gap-x-2 px-3 py-2 font-medium text-primary hover:text-gray-900">
-                <span className="hidden">Search</span>
-                {/* This icon location seems to be off */}
-                <Search color="#fff" />
-              </div>
-            </button>
-          </div>
+          <UserProfile />
         </nav>
       </header>
     </div>
