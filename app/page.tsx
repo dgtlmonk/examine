@@ -1,3 +1,4 @@
+import { Search } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -89,13 +90,8 @@ export default function Home() {
                     dir="ltr"
                   >
                     <li>
-                      <button
-                        id="radix-:rc:-trigger-radix-:rd:"
-                        aria-expanded="false"
-                        aria-controls="radix-:rc:-content-radix-:rd:"
-                        className="group text-gray-600 inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50  whitespace-nowrap decoration-2 hover:text-primary hover:underline xl:px-3 group"
-                      >
-                        <a href="/members/profile/">
+                      <button className="group text-gray-600 inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50  whitespace-nowrap decoration-2 hover:text-primary hover:underline xl:px-3 group">
+                        <a href="#">
                           <svg
                             width="26"
                             height="25"
@@ -108,7 +104,7 @@ export default function Home() {
                               fill="currentColor"
                             ></path>
                           </svg>
-                        </a>{' '}
+                        </a>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -160,23 +156,8 @@ export default function Home() {
             >
               <div className="search flex items-center gap-x-2 px-3 py-2 font-medium text-primary hover:text-gray-900">
                 <span className="hidden">Search</span>
-                <svg
-                  className="h-4 w-4"
-                  color="#fff"
-                  id="search-icon"
-                  viewBox="0 0 21 21"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.39931 0.476562C4.53652 0.476562 0.580078 4.36527 0.580078 9.14481C0.580078 13.9246 4.53652 17.8131 9.39931 17.8131C14.2624 17.8131 18.2186 13.9246 18.2186 9.14481C18.2186 4.36527 14.2624 0.476562 9.39931 0.476562ZM9.39931 16.2128C5.43419 16.2128 2.20825 13.0421 2.20825 9.14485C2.20825 5.24761 5.43419 2.07686 9.39931 2.07686C13.3644 2.07686 16.5904 5.24757 16.5904 9.14481C16.5904 13.0421 13.3644 16.2128 9.39931 16.2128Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M20.3677 18.7937L15.7002 14.2061C15.3822 13.8935 14.8671 13.8935 14.5491 14.2061C14.231 14.5184 14.231 15.0252 14.5491 15.3376L19.2165 19.9251C19.3755 20.0814 19.5837 20.1595 19.7921 20.1595C20.0002 20.1595 20.2086 20.0814 20.3677 19.9251C20.6857 19.6128 20.6857 19.106 20.3677 18.7937Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
+                {/* This icon location seems to be off */}
+                <Search color="#fff" />
               </div>
             </button>
           </div>
