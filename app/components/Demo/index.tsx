@@ -1,5 +1,3 @@
-'use client';
-
 import SavePageDialogTrigger from '@/components/Dialog/SavePage';
 
 export default function Demo() {

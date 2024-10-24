@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
-import '@/theme/default/globals.css';
 import { lora } from '@/theme/default/fonts';
+import '@/theme/default/globals.css';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Examine',
