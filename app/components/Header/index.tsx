@@ -3,14 +3,12 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className="sticky left-0 top-0 z-1000 block w-full bg-white transition-colors duration-300">
-      <nav className="mx-auto flex h-16 w-full items-center justify-between bg-examine-purple-600 px-2.5 py-3 md:px-4 lg:h-19 lg:bg-white lg:p-0 wide:max-w-fixed">
+    <header className="z-1000 sticky left-0 top-0 block w-full bg-white transition-colors duration-300">
+      <nav className="lg:h-19 wide:max-w-fixed mx-auto flex h-16 w-full items-center justify-between bg-examine-purple-600 px-2.5 py-3 md:px-4 lg:bg-white lg:p-0">
         <div className="flex h-full shrink-0 items-center gap-x-2.5 overflow-hidden md:gap-x-4">
           <button
-            className="flex items-center gap-1 transition-colors duration-200 disabled:cursor-not-allowed text-white hover:bg-examine-purple-400 active:bg-examine-purple-800 disabled:bg-[#babbbd] text-base h-[30px] w-8 rounded bg-examine-purple-medium p-1.5 lg:hidden"
+            className="hover:bg-examine-purple-400 active:bg-examine-purple-800 flex h-[30px] w-8 items-center gap-1 rounded bg-examine-purple-medium p-1.5 text-base text-white transition-colors duration-200 disabled:cursor-not-allowed disabled:bg-[#babbbd] lg:hidden"
             aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="menu"
           >
             <svg className="w-full text-white" viewBox="0 0 21 15" fill="none">
               <path
@@ -36,7 +34,7 @@ export default function Header() {
               ></path>{' '}
             </svg>
           </button>
-          <div className="lg:px-6 2xl:flex 2xl:w-full 2xl:max-w-[16rem] 3xl:!max-w-sm">
+          <div className="lg:px-6 2xl:flex 2xl:w-full 2xl:max-w-[16rem]">
             <Link aria-label="Examine Home Page" href="/">
               <svg
                 width="700"
@@ -67,7 +65,7 @@ export default function Header() {
           </div>
         </div>
         <div
-          className="hidden items-center text-sm lg:flex xl:text-menu pr-8"
+          className="xl:text-menu hidden items-center pr-8 text-sm lg:flex"
           aria-label="Main Menu"
         >
           <nav
@@ -79,7 +77,7 @@ export default function Header() {
             <div className="relative">
               <ul className="group">
                 <li>
-                  <button className="group text-gray-600 inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50  whitespace-nowrap decoration-2 hover:text-primary hover:underline xl:px-3 group">
+                  <button className="hover:bg-accent focus:bg-accent focus:text-accent-foreground group inline-flex h-10 w-max items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-gray-600 decoration-2 transition-colors hover:text-primary hover:underline focus:outline-none disabled:pointer-events-none disabled:opacity-50 xl:px-3">
                     <a href="#">
                       <svg
                         width="26"

@@ -8,18 +8,23 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      lora: 'var(--font-lora)',
+    },
     extend: {
       colors: {
         primary: '#5e3b76',
         examine: {
           purple: {
-            '600': 'rgb(86 46 105)',
+            600: 'rgb(86 46 105)',
+            500: 'rgb(95 59 118)',
             medium: 'rgb(130 101 149)',
           },
         },
       },
       width: {
-        '18': '72px',
+        18: '72px',
+        25: '100px',
       },
       borderRadius: {
         lg: 'var(--radius)',
