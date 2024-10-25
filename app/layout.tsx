@@ -1,4 +1,4 @@
-import { lora } from '@/theme/default/fonts';
+import { inter, lora } from '@/theme/default/fonts';
 import '@/theme/default/globals.css';
 import type { Metadata } from 'next';
 
@@ -15,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lora.variable} antialiased`}>{children}</body>
+      <body className={`${lora.variable} ${inter.className} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

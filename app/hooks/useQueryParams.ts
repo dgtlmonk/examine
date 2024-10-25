@@ -1,9 +1,12 @@
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 export function useQueryParams() {
-  const searchParams = useSearchParams();
   const pathname = usePathname();
-  const params = new URLSearchParams(searchParams);
+  const searchParams = useSearchParams();
 
-  return { pathname, params };
+  return useMemo(() => {
+    const params = new URLSearchParams(searchParams);
+    return { pathname, params };
+  }, [pathname, searchParams]);
 }

@@ -10,10 +10,12 @@ const config: Config = {
   theme: {
     fontFamily: {
       lora: 'var(--font-lora)',
+      inter: 'var(--font-inter)',
     },
     extend: {
       colors: {
         primary: '#5e3b76',
+        premium: 'rgb(255 193 7)',
         examine: {
           purple: {
             600: 'rgb(86 46 105)',
