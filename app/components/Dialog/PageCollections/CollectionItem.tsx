@@ -8,7 +8,7 @@ export default function CollectionItem({
   isSaved = false,
 }: {
   name: string;
-  isSaved: boolean;
+  isSaved?: boolean;
 }) {
   const [isToggled, setIsToggled] = useState(() => isSaved);
 
