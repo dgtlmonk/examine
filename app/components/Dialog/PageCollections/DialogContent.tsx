@@ -81,7 +81,7 @@ export default function DialogContent({ context }: { context: string }) {
     });
   }
 
-  function _onPageUnsave() {
+  function _onPageUnbookmark() {
     setCollections(prevCollections =>
       prevCollections.map(collection => ({
         ...collection,
@@ -119,7 +119,7 @@ export default function DialogContent({ context }: { context: string }) {
             <span className="flex items-center justify-between text-primary">
               Saved
               <SheetClose asChild>
-                <Button variant="ghost" size="icon" onClick={_onPageUnsave}>
+                <Button variant="ghost" size="icon" onClick={_onPageUnbookmark}>
                   <BookmarkCheck strokeWidth={1.5} className="text-blue-500" />
                 </Button>
               </SheetClose>

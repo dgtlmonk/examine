@@ -31,7 +31,7 @@ export default function PageCollectionCreateState({
           autoFocus
           type="text"
           name="collectionName"
-          className="text-[.9rem] mt-1"
+          className=" mt-1"
           placeholder="Type collection name ..."
           disabled={isPending}
           onChange={() => setFormError(null)}
