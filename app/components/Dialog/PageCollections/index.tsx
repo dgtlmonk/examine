@@ -32,12 +32,9 @@ export default function PageCollectionsDialog({
   );
 
   const toggleSave = () => {
-    // TODO: add optimistic update
-    if (isSaved) {
-      params.set('save', '0');
-      // optionally, we can pass the context in query params - useful for sharing a link
-      // params.set('page', context);
-    } else {
+    // This is not a true save, it just simulates the save state
+    // for the purposes of this dialog
+    if (!isSaved) {
       params.set('save', '1');
     }
 

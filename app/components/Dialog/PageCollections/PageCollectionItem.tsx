@@ -3,14 +3,16 @@ import { Button } from '@/components/ui/button';
 import { MinusCircleIcon, PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
-export default function CollectionItem({
+export default function PageCollectionItem({
   name,
-  isSaved = false,
+  isSubscribed = false,
+  onCollectionSubscribe,
 }: {
   name: string;
-  isSaved?: boolean;
+  isSubscribed?: boolean;
+  onCollectionSubscribe: () => void;
 }) {
-  const [isToggled, setIsToggled] = useState(() => isSaved);
+  const [isToggled, setIsToggled] = useState(() => isSubscribed);
 
   const status = isToggled ? (
     <MinusCircleIcon
@@ -26,6 +28,7 @@ export default function CollectionItem({
 
   const handleToggle = () => {
     setIsToggled(!isToggled);
+    onCollectionSubscribe();
   };
 
   return (

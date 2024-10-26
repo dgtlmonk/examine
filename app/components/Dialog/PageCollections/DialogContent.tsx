@@ -1,95 +1,153 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-
-import { Input } from '@/components/ui/input';
-import { SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { BookmarkCheck, Check, Trash2 } from 'lucide-react';
+import {
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
+import { useQueryParams } from '@/hooks/useQueryParams';
+import { BookmarkCheck, ChevronLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { FormEvent, useRef, useState, useTransition } from 'react';
-import CollectionItem from './CollectionItem';
+import PageCollectionCreateState from './PageCollectionCreateState';
+import PageCollectionEmptyState from './PageCollectionEmptyState';
+import PageCollectionsList from './PageCollectionsList';
+import { TPageCollection } from './types';
 
 export default function DialogContent({ context }: { context: string }) {
-  const [collections, setCollections] = useState<string[]>([
-    'for mom',
-    'for dad',
-  ]);
+  const [collections, setCollections] = useState<TPageCollection[] | []>([]);
   const [isPending, startTransition] = useTransition();
-  const formRef = useRef<HTMLFormElement>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isCreateState, setIsCreateState] = useState(false);
+  const { replace } = useRouter();
+  const { params, pathname } = useQueryParams();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const isEmptyState = !collections.length && !isCreateState;
+  const collectionNameRef = useRef<HTMLInputElement>(null);
+
+  const _onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // mock submit
+    const formData = new FormData(event.currentTarget);
+    const saveToNewCollection = formData.get('saveToNewCollection');
+
     startTransition(async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      return;
+      // server action stub
+      await new Promise(resolve => setTimeout(resolve, 700));
+      const collectionName = formData.get('collectionName');
+
+      // minimal error check
+      if (!collectionName) {
+        setError('Collection name is required');
+        return;
+      }
+
+      setCollections(prev => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          name: collectionName as string,
+          isSubscribed: saveToNewCollection === 'on',
+        },
+      ]);
+
+      setIsCreateState(false);
     });
   };
 
+  function _onCreateCollection() {
+    setIsCreateState(true);
+  }
+
+  function _onBackToCollections() {
+    setIsCreateState(false);
+  }
+
+  function _onCleanUp() {
+    setError(null);
+    setIsCreateState(false);
+  }
+
+  function _onCollectionSubscribe(collectionId: string) {
+    setCollections(prevCollections => {
+      const updatedCollections = prevCollections.map(collection =>
+        collection.id === collectionId
+          ? { ...collection, isSubscribed: !collection.isSubscribed }
+          : collection,
+      );
+
+      return updatedCollections;
+    });
+  }
+
+  function _onPageUnsave() {
+    setCollections(prevCollections =>
+      prevCollections.map(collection => ({
+        ...collection,
+        isSubscribed: false,
+      })),
+    );
+
+    // unset save state
+    params.set('save', '0');
+    replace(`${pathname}?${params.toString()}`);
+  }
+
   return (
-    <SheetContent>
+    <SheetContent onAnimationEnd={_onCleanUp}>
       <SheetHeader>
-        <SheetTitle className="flex font-semibold text-primary">
-          Saved Page - {context}
+        <SheetTitle className="flex items-center gap-1  font-semibold text-primary text-ellipsis">
+          {isCreateState && (
+            <button
+              className="p-1 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-md flex items-center"
+              onClick={_onBackToCollections}
+            >
+              <ChevronLeft color="currentColor" />
+            </button>
+          )}
+
+          <p className="text-ellipsis whitespace-nowrap truncate">
+            Saved Page - {context}
+          </p>
         </SheetTitle>
       </SheetHeader>
+
       <div className="flex flex-col mt-2 ">
-        <div className="flex w-full flex-col justify-center">
-          <span className="flex items-center justify-between text-primary">
-            Saved
-            <Button variant="ghost" size="icon">
-              <BookmarkCheck strokeWidth={1.5} className="text-blue-500" />
-            </Button>
-          </span>
-        </div>
-        {/* no collections */}
-        <div className="flex flex-col w-full gap-4 items-center justify-center py-4">
-          <span className="text-center text-slate-500">
-            You don&apos;t have any collections yet.
-          </span>
+        {!isCreateState && (
+          <div className="transition-opacity ease-in-out delay-150 duration-300 flex w-full flex-col justify-center">
+            <span className="flex items-center justify-between text-primary">
+              Saved
+              <SheetClose asChild>
+                <Button variant="ghost" size="icon" onClick={_onPageUnsave}>
+                  <BookmarkCheck strokeWidth={1.5} className="text-blue-500" />
+                </Button>
+              </SheetClose>
+            </span>
+          </div>
+        )}
 
-          <Button variant="default" className="w-min font-medium">
-            Create Collection
-          </Button>
-        </div>
+        {isEmptyState && (
+          <PageCollectionEmptyState onCreateCollection={_onCreateCollection} />
+        )}
 
-        {/* new collection */}
-        <form
-          className="margin-0 flex-col gap-2"
-          ref={formRef}
-          onSubmit={handleSubmit}
-        >
-          <Input
-            autoFocus
-            type="text"
-            className="text-[1rem]"
-            placeholder="collection name ..."
-            disabled={isPending}
+        {isCreateState && (
+          <PageCollectionCreateState
+            onSubmit={_onSubmit}
+            isPending={isPending}
+            setFormError={setError}
+            error={error}
+            collectionNameRef={collectionNameRef}
           />
-          <div className="flex gap-2 mt-4 justify-between w-full">
-            <Button className="group w-full " variant="secondary">
-              <Trash2 className=" text-slate-500 sm:text-slate-400 group-hover:text-slate-600" />
-            </Button>
-            <Button className="group w-full" variant="secondary" type="submit">
-              <Check className="group text-slate-500 sm:text-slate-400 group-hover:text-slate-600" />
-            </Button>
-          </div>
-        </form>
-        {/* collections */}
-        {collections.length ? (
-          <div className="flex flex-col gap-2">
-            <div className="flex justify-between items-center mt-6">
-              <span className="text-gray-600 font-semibold"> Collections</span>
-              <Button variant="ghost">New Collection</Button>
-            </div>
-            <div className="-mt-2">
-              <ul className="">
-                {collections.map(collection => (
-                  <CollectionItem key={collection} name={collection} />
-                ))}
-              </ul>
-            </div>
-          </div>
-        ) : null}
+        )}
+
+        {!isCreateState && (
+          <PageCollectionsList
+            collections={collections}
+            onCreateCollection={_onCreateCollection}
+            onCollectionSubscribe={_onCollectionSubscribe}
+          />
+        )}
       </div>
     </SheetContent>
   );
