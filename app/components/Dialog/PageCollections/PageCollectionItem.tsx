@@ -32,7 +32,7 @@ export default function PageCollectionItem({
   };
 
   return (
-    <li className="flex justify-between items-center text-primary">
+    <li data-cy="collection-item" className="flex justify-between items-center text-primary">
       <span className="-tracking-2">{name}</span>
       <Button variant="ghost" className="group" onClick={handleToggle}>
         {status}

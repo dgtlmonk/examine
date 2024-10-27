@@ -19,20 +19,25 @@ export default function PageCollectionCreateState({
 }) {
   return (
     <>
-      <form className="margin-0 flex-col gap-2" onSubmit={onSubmit}>
+      <form
+        data-cy="create-collection-form"
+        className="margin-0 flex-col gap-2"
+        onSubmit={onSubmit}
+      >
         <Label
           className="font-semibold text-slate-600"
           htmlFor="collectionName"
         >
-          Create Collection
+          New Collection
         </Label>
         <Input
           ref={collectionNameRef}
           autoFocus
           type="text"
           name="collectionName"
+          data-cy="field-collection-name"
           className=" mt-1"
-          placeholder="Type collection name ..."
+          placeholder="type collection name"
           disabled={isPending}
           onChange={() => setFormError(null)}
           onKeyDown={e => {
@@ -46,7 +51,7 @@ export default function PageCollectionCreateState({
           }}
         />
         {error && (
-          <span data-test-id="error" className="text-red-500 text-sm">
+          <span data-cy="create-error-message" className="text-red-500 text-sm">
             {error}
           </span>
         )}

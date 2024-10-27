@@ -49,7 +49,7 @@ export default function PageCollectionsDialog({
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          data-cy="save-page-btn"
+          data-cy="save-page-to-collection-btn"
           variant="secondary"
           onClick={toggleSave}
         >

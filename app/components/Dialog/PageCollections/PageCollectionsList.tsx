@@ -16,10 +16,10 @@ export default function PageCollectionsList({
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div data-cy="collection-list" className="flex flex-col gap-2">
       <div className="flex justify-between items-center mt-2">
         <span className="text-gray-600 font-semibold"> Collections</span>
-        <Button variant="ghost" onClick={onCreateCollection}>
+        <Button data-cy="create-collection-text-btn" variant="ghost" onClick={onCreateCollection}>
           New Collection
         </Button>
       </div>

@@ -6,13 +6,13 @@ describe('Manage Page Status', () => {
 
   describe('Unsaved Page Status', () => {
     it("displays a 'Save Page' button", () => {
-      cy.get('button[data-cy="save-page-btn"]')
+      cy.get('button[data-cy="save-page-to-collection-btn"]')
         .contains(/save page/i)
         .should('be.visible');
     });
 
     it('shows Bookmark icon within the "Save Page" button', () => {
-      cy.get('button[data-cy="save-page-btn"]')
+      cy.get('button[data-cy="save-page-to-collection-btn"]')
         .find('svg[data-cy="bookmark-icon"]')
         .should('be.visible');
 
@@ -25,13 +25,13 @@ describe('Manage Page Status', () => {
 
   describe('Saved Page Status', () => {
     it('toggles the "Save Page" button text to "Page Saved" on click', () => {
-      cy.get('button[data-cy="save-page-btn"]').click();
+      cy.get('button[data-cy="save-page-to-collection-btn"]').click();
 
       // close the dialog
       cy.wait(500);
       cy.get('button[data-cy="sheet-close-btn"]').click();
 
-      cy.get('button[data-cy="save-page-btn"]')
+      cy.get('button[data-cy="save-page-to-collection-btn"]')
         .contains(/page saved/i)
         .should('be.visible');
 
@@ -43,7 +43,7 @@ describe('Manage Page Status', () => {
     });
 
     it('shows a Checked Bookmark Icon within the "Save Page" button', () => {
-      cy.get('button[data-cy="save-page-btn"]').click();
+      cy.get('button[data-cy="save-page-to-collection-btn"]').click();
 
       cy.wait(500);
       cy.get('[data-cy="sheet-close-btn"]', { timeout: 300 }).should(
@@ -54,13 +54,13 @@ describe('Manage Page Status', () => {
       cy.wait(500);
       cy.get('button[data-cy="sheet-close-btn"]').click();
 
-      cy.get('button[data-cy="save-page-btn"]')
+      cy.get('button[data-cy="save-page-to-collection-btn"]')
         .find('svg[data-cy="bookmark-check-icon"]')
         .should('be.visible');
     });
 
     it('shows the dialog when the "Save Page" button is clicked', () => {
-      cy.get('button[data-cy="save-page-btn"]').click();
+      cy.get('button[data-cy="save-page-to-collection-btn"]').click();
       cy.get('[data-cy="page-saved-text"]').should('be.visible');
 
       cy.screenshot('Saved Page - Dialog', {
@@ -70,7 +70,7 @@ describe('Manage Page Status', () => {
     });
 
     it('should dismiss and unsave the page when the bookmark-chek icon button is clicked', () => {
-      cy.get('button[data-cy="save-page-btn"]').click();
+      cy.get('button[data-cy="save-page-to-collection-btn"]').click();
 
       cy.wait(500);
       cy.get('button[data-cy="sheet-close-btn"]').click();
@@ -91,8 +91,8 @@ describe('Manage Page Status', () => {
         'Unsaved Page Action - (During) Dialog Bookmark Check clicked',
         {
           overwrite: true,
-        capture: 'viewport',
-      });
+          capture: 'viewport',
+        });
 
       cy.get('[data-cy="unsave-page-btn"]').click();
 
