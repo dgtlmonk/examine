@@ -8,15 +8,20 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { useQueryParams } from '@/hooks/useQueryParams';
-import { BookmarkCheck, ChevronLeft } from 'lucide-react';
+import { BookmarkCheck, Check, ChevronLeft, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useRef, useState, useTransition } from 'react';
 import PageCollectionCreateState from './PageCollectionCreateState';
 import PageCollectionEmptyState from './PageCollectionEmptyState';
 import PageCollectionsList from './PageCollectionsList';
 import { TPageCollection } from './types';
+import { Switch } from '@/components/ui/switch';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
 
-export default function DialogContent({ context }: { context: string }) {
+export default function PageDialogContent({ context }: { context: string }) {
   const [collections, setCollections] = useState<TPageCollection[] | []>([]);
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -98,66 +103,121 @@ export default function DialogContent({ context }: { context: string }) {
     <SheetContent onAnimationEnd={_onCleanUp}>
       <SheetHeader>
         <SheetTitle className="-mt-2 flex items-center gap-1  font-semibold text-primary text-ellipsis">
-          {isCreateState && (
-            <button
-              className="-ml-2 p-1 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-md flex items-center"
-              onClick={_onBackToCollections}
-            >
-              <ChevronLeft color="currentColor" />
-            </button>
-          )}
-
           <p className="whitespace-nowrap truncate">Saved Page - {context}</p>
         </SheetTitle>
       </SheetHeader>
 
-      <div className="flex flex-col mt-2 ">
-        {!isCreateState ? (
-          <div className="transition-opacity ease-in-out delay-150 duration-300 flex w-full flex-col justify-center">
-            <span
-              data-cy="page-saved-text"
-              className="flex items-center justify-between text-primary"
-            >
-              Saved
-              <SheetClose asChild>
-                <Button
-                  data-cy="unsave-page-btn"
-                  variant="ghost"
-                  size="icon"
-                  onClick={_onPageUnbookmark}
+      <div className="flex flex-col gap-4">
+        <div className="gap-1 flex w-full flex-col justify-center">
+          <span
+            data-cy="page-saved-text"
+            className="flex items-center justify-between text-primary text-[.9rem]"
+          >
+            Saved
+            <SheetClose asChild>
+              <button
+                aria-label="Unsave Page"
+                data-cy="unsave-page-btn"
+                onClick={_onPageUnbookmark}
+                className="p-2 rounded-md hover:bg-slate-50"
+              >
+                <BookmarkCheck
+                  data-cy="dialog-bookmark-check-icon"
+                  strokeWidth={1.5}
+                  className="text-blue-500"
+                  width={24}
+                  height={24}
+                />
+              </button>
+            </SheetClose>
+          </span>
+          <span className="flex items-center justify-between text-primary text-[.9rem]">
+            Get updates
+            <Switch data-cy="get-updates-switch" defaultChecked={true} />
+          </span>
+        </div>
+
+        {/* create collection dialog */}
+        <div className="flex justify-between items-center mt-2">
+          <span className="text-gray-600 font-semibold"> Collections</span>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button data-cy="create-collection-text-btn" variant="ghost">
+                New Collection
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>New Collection</DialogTitle>
+              </DialogHeader>
+              <div className="w-full">
+                <form
+                  data-cy="create-collection-form"
+                  className="margin-0 flex-col gap-2"
+                  onSubmit={_onSubmit}
                 >
-                  <BookmarkCheck
-                    data-cy="dialog-bookmark-check-icon"
-                    strokeWidth={1.5}
-                    className="text-blue-500"
+                  <Input
+                    ref={collectionNameRef}
+                    autoFocus
+                    type="text"
+                    name="collectionName"
+                    data-cy="field-collection-name"
+                    className=" mt-1"
+                    placeholder="type collection name"
+                    disabled={isPending}
+                    onChange={() => setError(null)}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const form = e.currentTarget.form;
+                        if (form) {
+                          form.requestSubmit();
+                        }
+                      }
+                    }}
                   />
-                </Button>
-              </SheetClose>
-            </span>
-          </div>
-        ) : null}
+                  {error && (
+                    <span data-cy="create-error-message" className="text-red-500 text-sm">
+                      {error}
+                    </span>
+                  )}
 
-        {isEmptyState ? (
-          <PageCollectionEmptyState onCreateCollection={_onCreateCollection} />
-        ) : null}
+                  <div className="flex items-center space-x-2 pt-2">
+                    <Checkbox
+                      data-test-id="saveToNewCollection"
+                      id="saveToNewCollection"
+                      name="saveToNewCollection"
+                      disabled={isPending}
+                    />
+                    <label
+                      htmlFor="saveToNewCollection"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-600"
+                    >
+                      Save page to new collection
+                    </label>
+                  </div>
 
-        {isCreateState ? (
-          <PageCollectionCreateState
-            onSubmit={_onSubmit}
-            isPending={isPending}
-            setFormError={setError}
-            error={error}
-            collectionNameRef={collectionNameRef}
-          />
-        ) : null}
+                  <DialogFooter className="flex gap-2 mt-4 justify-between w-full">
+                    <DialogClose asChild>
+                      <Button type="button" className="group w-full " variant="secondary">
+                        <Trash2 className=" text-slate-500 sm:text-slate-400 group-hover:text-slate-600" />
+                      </Button>
+                    </DialogClose>
+                    <Button className="group w-full" variant="secondary" type="submit">
+                      <Check className="group text-slate-500 sm:text-slate-400 group-hover:text-slate-600" />
+                    </Button>
+                  </DialogFooter>
+                </form>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
 
-        {!isCreateState ? (
-          <PageCollectionsList
-            collections={collections}
-            onCreateCollection={_onCreateCollection}
-            onCollectionSubscribe={_onCollectionSubscribe}
-          />
-        ) : null}
+        <PageCollectionsList
+          collections={collections}
+          onCreateCollection={_onCreateCollection}
+          onCollectionSubscribe={_onCollectionSubscribe}
+        />
       </div>
     </SheetContent>
   );

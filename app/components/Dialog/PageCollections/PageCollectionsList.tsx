@@ -11,21 +11,19 @@ export default function PageCollectionsList({
   onCreateCollection: () => void;
   onCollectionSubscribe: (collectionId: string) => void;
 }) {
-  if (!collections?.length) {
-    return null;
-  }
+
 
   return (
     <div data-cy="collection-list" className="flex flex-col gap-2">
-      <div className="flex justify-between items-center mt-2">
-        <span className="text-gray-600 font-semibold"> Collections</span>
-        <Button data-cy="create-collection-text-btn" variant="ghost" onClick={onCreateCollection}>
-          New Collection
-        </Button>
-      </div>
+      {!collections.length ? (
+        <div className="h-48  text-sm grid place-items-center text-slate-500">
+          You don&apos;t have any collections yet. <br />
+          Add one by clicking "New Collection"
+        </div>
+      ) : null}
       <div className="-mt-2">
         <ul className="">
-          {collections.map(({ id, name, isSubscribed }) => (
+          {collections?.map(({ id, name, isSubscribed }) => (
             <PageCollectionItem
               key={id}
               name={name}
