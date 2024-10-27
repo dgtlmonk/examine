@@ -55,7 +55,7 @@ export default function PageCollectionCreateDialog({
                 name="collectionName"
                 data-cy="field-collection-name"
                 className=" mt-1"
-                placeholder="type collection name"
+                placeholder="collection name"
                 disabled={isPending}
                 onChange={() => setFormError(null)}
                 onKeyDown={e => {
