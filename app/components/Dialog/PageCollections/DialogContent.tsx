@@ -97,41 +97,51 @@ export default function DialogContent({ context }: { context: string }) {
   return (
     <SheetContent onAnimationEnd={_onCleanUp}>
       <SheetHeader>
-        <SheetTitle className="flex items-center gap-1  font-semibold text-primary text-ellipsis">
+        <SheetTitle className="-mt-2 flex items-center gap-1  font-semibold text-primary text-ellipsis">
           {isCreateState && (
             <button
-              className="p-1 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-md flex items-center"
+              className="-ml-2 p-1 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-md flex items-center"
               onClick={_onBackToCollections}
             >
               <ChevronLeft color="currentColor" />
             </button>
           )}
 
-          <p className="text-ellipsis whitespace-nowrap truncate">
-            Saved Page - {context}
-          </p>
+          <p className="whitespace-nowrap truncate">Saved Page - {context}</p>
         </SheetTitle>
       </SheetHeader>
 
       <div className="flex flex-col mt-2 ">
-        {!isCreateState && (
+        {!isCreateState ? (
           <div className="transition-opacity ease-in-out delay-150 duration-300 flex w-full flex-col justify-center">
-            <span className="flex items-center justify-between text-primary">
+            <span
+              data-cy="page-saved-text"
+              className="flex items-center justify-between text-primary"
+            >
               Saved
               <SheetClose asChild>
-                <Button variant="ghost" size="icon" onClick={_onPageUnbookmark}>
-                  <BookmarkCheck strokeWidth={1.5} className="text-blue-500" />
+                <Button
+                  data-cy="unsave-page-btn"
+                  variant="ghost"
+                  size="icon"
+                  onClick={_onPageUnbookmark}
+                >
+                  <BookmarkCheck
+                    data-cy="dialog-bookmark-check-icon"
+                    strokeWidth={1.5}
+                    className="text-blue-500"
+                  />
                 </Button>
               </SheetClose>
             </span>
           </div>
-        )}
+        ) : null}
 
-        {isEmptyState && (
+        {isEmptyState ? (
           <PageCollectionEmptyState onCreateCollection={_onCreateCollection} />
-        )}
+        ) : null}
 
-        {isCreateState && (
+        {isCreateState ? (
           <PageCollectionCreateState
             onSubmit={_onSubmit}
             isPending={isPending}
@@ -139,15 +149,15 @@ export default function DialogContent({ context }: { context: string }) {
             error={error}
             collectionNameRef={collectionNameRef}
           />
-        )}
+        ) : null}
 
-        {!isCreateState && (
+        {!isCreateState ? (
           <PageCollectionsList
             collections={collections}
             onCreateCollection={_onCreateCollection}
             onCollectionSubscribe={_onCollectionSubscribe}
           />
-        )}
+        ) : null}
       </div>
     </SheetContent>
   );

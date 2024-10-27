@@ -21,12 +21,16 @@ export default function PageCollectionsDialog({
 
   const status = isSaved ? (
     <>
-      <BookmarkCheck strokeWidth={1.5} className="text-blue-500" />
+      <BookmarkCheck
+        data-cy="bookmark-check-icon"
+        strokeWidth={1.5}
+        className="text-blue-500"
+      />
       Page Saved
     </>
   ) : (
     <>
-      <Bookmark />
+      <Bookmark data-cy="bookmark-icon" />
       Save Page
     </>
   );
@@ -44,7 +48,11 @@ export default function PageCollectionsDialog({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary" onClick={toggleSave}>
+        <Button
+          data-cy="save-page-btn"
+          variant="secondary"
+          onClick={toggleSave}
+        >
           {status}
         </Button>
       </DialogTrigger>

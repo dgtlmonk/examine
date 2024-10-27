@@ -1,37 +1,16 @@
 import UserProfile from '@/components/UserProfile';
+import { Menu } from 'lucide-react';
 
 export default function Header() {
   return (
-    <header className="z-1000 sticky left-0 top-0 block w-full bg-white transition-colors duration-300">
+    <header className="z-1000 sticky left-0 top-0 block w-full bg-white">
       <nav className="lg:h-19 wide:max-w-fixed mx-auto flex h-16 w-full items-center justify-between bg-examine-purple-600 px-2.5 py-3 md:px-4 lg:bg-white lg:p-0">
         <div className="flex h-full shrink-0 items-center gap-x-2.5 overflow-hidden md:gap-x-4">
           <button
-            className="hover:bg-examine-purple-400 active:bg-examine-purple-800 flex h-[30px] w-8 items-center gap-1 rounded bg-examine-purple-medium p-1.5 text-base text-white transition-colors duration-200 disabled:cursor-not-allowed disabled:bg-[#babbbd] lg:hidden"
+            className="hover:bg-examine-purple-400 active:bg-examine-purple-800 flex h-[30px] w-8 items-center gap-1 rounded bg-examine-purple-medium p-1.5 text-base  lg:hidden"
             aria-label="Open menu"
           >
-            <svg className="w-full text-white" viewBox="0 0 21 15" fill="none">
-              <path
-                d="M1.06201 1.31836H19.062"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-              <path
-                d="M1.06201 7.31836H19.062"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-              <path
-                d="M1.06201 13.3184H19.062"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>{' '}
-            </svg>
+            <Menu className="text-white" />
           </button>
           <div className="cursor-pointer lg:px-6">
             <svg
