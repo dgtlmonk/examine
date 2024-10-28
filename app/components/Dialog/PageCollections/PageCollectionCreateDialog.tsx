@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogClose,
@@ -77,21 +76,6 @@ export default function PageCollectionCreateDialog({
                 </span>
               )}
 
-              <div className="flex items-center space-x-2 pt-2">
-                <Checkbox
-                  data-cy="save-to-new-collection"
-                  id="saveToNewCollection"
-                  name="saveToNewCollection"
-                  disabled={isPending}
-                />
-                <label
-                  htmlFor="saveToNewCollection"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-600"
-                >
-                  Save page to new collection
-                </label>
-              </div>
-
               <DialogFooter className="flex gap-2 mt-4 justify-between w-full">
                 <DialogClose asChild>
                   <Button
@@ -99,7 +83,7 @@ export default function PageCollectionCreateDialog({
                     className="group w-full "
                     variant="secondary"
                   >
-                    <p className=" text-slate-500 sm:text-slate-400 group-hover:text-slate-600">
+                    <p className=" text-slate-500  group-hover:text-slate-600">
                       Cancel
                     </p>
                   </Button>
@@ -110,7 +94,7 @@ export default function PageCollectionCreateDialog({
                   variant="secondary"
                   type="submit"
                 >
-                  <p className="group text-slate-500 sm:text-slate-400 group-hover:text-slate-600">
+                  <p className=" text-slate-500  group-hover:text-slate-600">
                     Save
                   </p>
                 </Button>
