@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { FormEvent, RefObject } from 'react';
 
 export default function PageCollectionCreateDialog({
   onSubmit,
