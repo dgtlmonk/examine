@@ -27,15 +27,19 @@ $ npm install
 
 ###  🧪  E2E Testing (Cypress)
 
-Headless Mode (Ideal for CI/CD)
+#### Headless Mode (Ideal for CI/CD)
 ```bash
 $ npm run test
 ```
+<img width="473" alt="image" src="https://github.com/user-attachments/assets/13cb5053-7790-4549-9e93-1c283e8eb590">
 
-Headed Mode - Browser or Electron (preferred)
+
+#### Headed Mode - Browser or Electron (preferred)
 ```bash
 $ npm run cy:open
 ```
+<img width="548" alt="image" src="https://github.com/user-attachments/assets/4d95cb71-7c96-4660-84f0-809c4ebccfdf">
+
 
 ### :nut_and_bolt: Dependencies
 
