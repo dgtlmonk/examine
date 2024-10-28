@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogClose,
@@ -27,81 +28,96 @@ export default function PageCollectionCreateDialog({
   triggerRef: RefObject<HTMLButtonElement>;
 }) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          ref={triggerRef}
-          data-cy="create-collection-text-btn"
-          variant="ghost"
-        >
-          New Collection
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md rounded-md">
-        <DialogHeader>
-          <DialogTitle>New Collection</DialogTitle>
-        </DialogHeader>
-        <div className="w-full">
-          <form
-            data-cy="create-collection-form"
-            className="margin-0 flex-col gap-2"
-            onSubmit={onSubmit}
+    <>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button
+            ref={triggerRef}
+            data-cy="create-collection-text-btn"
+            variant="ghost"
           >
-            <Input
-              ref={collectionNameRef}
-              autoFocus
-              type="text"
-              name="collectionName"
-              data-cy="field-collection-name"
-              className=" mt-1"
-              placeholder="collection name"
-              disabled={isPending}
-              onChange={() => setFormError(null)}
-              onKeyDown={e => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  const form = e.currentTarget.form;
-                  if (form) {
-                    form.requestSubmit();
+            New Collection
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-md rounded-md">
+          <DialogHeader>
+            <DialogTitle>New Collection</DialogTitle>
+          </DialogHeader>
+          <div className="w-full">
+            <form
+              data-cy="create-collection-form"
+              className="margin-0 flex-col gap-2"
+              onSubmit={onSubmit}
+            >
+              <Input
+                ref={collectionNameRef}
+                autoFocus
+                type="text"
+                name="collectionName"
+                data-cy="field-collection-name"
+                className=" mt-1"
+                placeholder="collection name"
+                disabled={isPending}
+                onChange={() => setFormError(null)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const form = e.currentTarget.form;
+                    if (form) {
+                      form.requestSubmit();
+                    }
                   }
-                }
-              }}
-            />
-            {error && (
-              <span
-                data-cy="create-error-message"
-                className="text-red-500 text-sm"
-              >
-                {error}
+                }}
+              />
+              {error && (
+                <span
+                  data-cy="create-error-message"
+                  className="text-red-500 text-sm"
+                >
+                  {error}
+                </span>
+              )}
+              <span className="flex items-center gap-1 mt-2">
+                <Checkbox
+                  data-cy="save-to-collection-checkbox"
+                  id="save-to-collection"
+                  name="saveToCollection"
+                />
+                <label
+                  htmlFor="save-to-collection"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Save to collection
+                </label>
               </span>
-            )}
 
-            <DialogFooter className="flex gap-2 mt-4 justify-between w-full">
-              <DialogClose asChild>
+              <DialogFooter className="flex gap-2 mt-4 justify-between w-full">
+                <DialogClose asChild>
+                  <Button
+                    type="button"
+                    className="group w-full "
+                    variant="secondary"
+                  >
+                    <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
+                      Cancel
+                    </p>
+                  </Button>
+                </DialogClose>
                 <Button
-                  type="button"
-                  className="group w-full "
+                  data-cy="create-collection-save-btn"
+                  className="group w-full"
                   variant="secondary"
+                  type="submit"
                 >
                   <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
-                    Cancel
+                    Save
                   </p>
                 </Button>
-              </DialogClose>
-              <Button
-                data-cy="create-collection-save-btn"
-                className="group w-full"
-                variant="secondary"
-                type="submit"
-              >
-                <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
-                  Save
-                </p>
-              </Button>
-            </DialogFooter>
-          </form>
-        </div>
-      </DialogContent>
-    </Dialog>
+              </DialogFooter>
+            </form>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

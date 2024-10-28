@@ -233,4 +233,32 @@ describe('Manage Page Collections', () => {
       });
     });
   });
+
+  describe('Save Page on Create New Collection', () => {
+    const screenshotFolder = `save-page-on-create-new-collection/`;
+
+    it('should save page to collection when "Save to collection" checkbox is checked', () => {
+      cy.openEmptyCollectionsDialog();
+
+      cy.wait(300);
+      cy.get('[data-cy="create-collection-text-btn"]').click();
+
+      cy.wait(300);
+      cy.get('[data-cy="save-to-collection-checkbox"]').click();
+      cy.get('[data-cy="field-collection-name"]').type('Gym Bruh Stuff');
+      cy.wait(300);
+      cy.screenshot(`${screenshotFolder}/Check Save to Collection`, {
+        overwrite: true,
+        capture: 'viewport',
+      });
+
+      cy.get('[data-cy="create-collection-form"]').submit();
+
+      cy.wait(1000);
+      cy.screenshot(`${screenshotFolder}/Create Collection Final State`, {
+        overwrite: true,
+        capture: 'viewport',
+      });
+    });
+  });
 });
