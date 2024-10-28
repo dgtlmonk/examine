@@ -59,8 +59,8 @@ Run tests to generate screenshot inside `/cypress/screenshots` folder
 
 <img width="253" alt="image" src="https://github.com/user-attachments/assets/9551b3d2-3982-4db0-a907-2df49dc3df2a">
 
-### Bonus Feature (PR)
-[Option to save page while creating new Collection](https://github.com/dgtlmonk/examine/pull/1)
+### :art: Bonus Feature (PR)
+[Create New Collection and Save Page in One Step](https://github.com/dgtlmonk/examine/pull/1)
 
 
 ---
