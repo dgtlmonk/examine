@@ -118,7 +118,6 @@ export default function PageDialogContent({ context }: { context: string }) {
           </span>
         </div>
 
-        {/* create collection dialog */}
         <div className="flex justify-between items-center mt-2">
           <span className="text-gray-600 font-semibold"> Collections</span>
           <PageCollectionCreateDialog

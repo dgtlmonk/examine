@@ -83,7 +83,7 @@ export default function PageCollectionCreateDialog({
                     className="group w-full "
                     variant="secondary"
                   >
-                    <p className=" text-slate-500  group-hover:text-slate-600">
+                    <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
                       Cancel
                     </p>
                   </Button>
@@ -94,7 +94,7 @@ export default function PageCollectionCreateDialog({
                   variant="secondary"
                   type="submit"
                 >
-                  <p className=" text-slate-500  group-hover:text-slate-600">
+                  <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
                     Save
                   </p>
                 </Button>
