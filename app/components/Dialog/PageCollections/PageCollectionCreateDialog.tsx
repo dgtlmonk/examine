@@ -26,83 +26,81 @@ export default function PageCollectionCreateDialog({
   triggerRef: RefObject<HTMLButtonElement>;
 }) {
   return (
-    <>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button
-            ref={triggerRef}
-            data-cy="create-collection-text-btn"
-            variant="ghost"
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          ref={triggerRef}
+          data-cy="create-collection-text-btn"
+          variant="ghost"
+        >
+          New Collection
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md rounded-md">
+        <DialogHeader>
+          <DialogTitle>New Collection</DialogTitle>
+        </DialogHeader>
+        <div className="w-full">
+          <form
+            data-cy="create-collection-form"
+            className="margin-0 flex-col gap-2"
+            onSubmit={onSubmit}
           >
-            New Collection
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-md rounded-md">
-          <DialogHeader>
-            <DialogTitle>New Collection</DialogTitle>
-          </DialogHeader>
-          <div className="w-full">
-            <form
-              data-cy="create-collection-form"
-              className="margin-0 flex-col gap-2"
-              onSubmit={onSubmit}
-            >
-              <Input
-                ref={collectionNameRef}
-                autoFocus
-                type="text"
-                name="collectionName"
-                data-cy="field-collection-name"
-                className=" mt-1"
-                placeholder="collection name"
-                disabled={isPending}
-                onChange={() => setFormError(null)}
-                onKeyDown={e => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const form = e.currentTarget.form;
-                    if (form) {
-                      form.requestSubmit();
-                    }
+            <Input
+              ref={collectionNameRef}
+              autoFocus
+              type="text"
+              name="collectionName"
+              data-cy="field-collection-name"
+              className=" mt-1"
+              placeholder="collection name"
+              disabled={isPending}
+              onChange={() => setFormError(null)}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  const form = e.currentTarget.form;
+                  if (form) {
+                    form.requestSubmit();
                   }
-                }}
-              />
-              {error && (
-                <span
-                  data-cy="create-error-message"
-                  className="text-red-500 text-sm"
-                >
-                  {error}
-                </span>
-              )}
+                }
+              }}
+            />
+            {error && (
+              <span
+                data-cy="create-error-message"
+                className="text-red-500 text-sm"
+              >
+                {error}
+              </span>
+            )}
 
-              <DialogFooter className="flex gap-2 mt-4 justify-between w-full">
-                <DialogClose asChild>
-                  <Button
-                    type="button"
-                    className="group w-full "
-                    variant="secondary"
-                  >
-                    <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
-                      Cancel
-                    </p>
-                  </Button>
-                </DialogClose>
+            <DialogFooter className="flex gap-2 mt-4 justify-between w-full">
+              <DialogClose asChild>
                 <Button
-                  data-cy="create-collection-save-btn"
-                  className="group w-full"
+                  type="button"
+                  className="group w-full "
                   variant="secondary"
-                  type="submit"
                 >
                   <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
-                    Save
+                    Cancel
                   </p>
                 </Button>
-              </DialogFooter>
-            </form>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </>
+              </DialogClose>
+              <Button
+                data-cy="create-collection-save-btn"
+                className="group w-full"
+                variant="secondary"
+                type="submit"
+              >
+                <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
+                  Save
+                </p>
+              </Button>
+            </DialogFooter>
+          </form>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }

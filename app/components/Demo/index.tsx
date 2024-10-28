@@ -1,4 +1,4 @@
-import PageCollectionsDialog from '../Dialog/PageCollections';
+import PageCollectionsDialog from '@/components/Dialog/PageCollections';
 
 const page = 'Creatine';
 export default function Demo() {
