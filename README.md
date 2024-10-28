@@ -25,6 +25,14 @@ Clone this repository, then install dependencies
 $ npm install
 ```
 
+## Key Features
+
+### Mobile-first Design
+<img width="183" alt="image" src="https://github.com/user-attachments/assets/ce1ddc79-34ce-4a81-a1f2-564e0cdf17cf">
+<img width="181" alt="image" src="https://github.com/user-attachments/assets/7cfe1de4-b597-4ce7-ad13-03870121031f">
+
+
+
 ###  🧪  E2E Testing (Cypress)
 
 #### Headless Mode (Ideal for CI/CD)
