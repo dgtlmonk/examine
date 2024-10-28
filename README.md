@@ -49,10 +49,17 @@ $ npm run test
 ```bash
 $ npm run cy:open
 ```
-![Uploading image.png…]()
+<img width="251" alt="image" src="https://github.com/user-attachments/assets/f0dad954-7338-472b-a071-42e163ff360d">
 
 <img width="548" alt="image" src="https://github.com/user-attachments/assets/4d95cb71-7c96-4660-84f0-809c4ebccfdf">
 
+#### Test Screenshots (Ideal for regression tests)
+Run tests to generate screenshot inside `/cypress/screenshots` folder
+<img width="253" alt="image" src="https://github.com/user-attachments/assets/9551b3d2-3982-4db0-a907-2df49dc3df2a">
+
+
+
+---
 
 ### :nut_and_bolt: Dependencies
 
