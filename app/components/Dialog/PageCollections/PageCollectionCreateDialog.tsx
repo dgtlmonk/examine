@@ -69,11 +69,25 @@ export default function PageCollectionCreateDialog({
               }}
             />
             {error && (
-              <span
-                data-cy="create-error-message"
-                className="text-red-500 text-sm"
-              >
-                {error}
+                <span
+                  data-cy="create-error-message"
+                  className="text-red-500 text-sm"
+                >
+                  {error}
+                </span>
+              )}
+              <span className="flex items-center gap-1 mt-2">
+                <Checkbox
+                  data-cy="save-to-collection-checkbox"
+                  id="save-to-collection"
+                  name="saveToCollection"
+                />
+                <label
+                  htmlFor="save-to-collection"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Save to collection
+                </label>
               </span>
             )}
             <span className="flex items-center gap-1 mt-2">
