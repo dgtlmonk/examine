@@ -14,7 +14,8 @@
     │   └── theme                     # Theme Style configuration
     ├── cypress                       # E2E Testing
     │   ├── e2e                       # Test specifications
-    │   └── support                   # Test support files
+    │   └── support                  
+    │   │   ├── commands.ts           # Cypress Custom Commands
     │   └── screenshots               # Test screenshots
 
 ### :wrench: Setup

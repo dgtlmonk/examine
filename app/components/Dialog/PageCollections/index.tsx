@@ -36,8 +36,7 @@ export default function PageCollectionsDialog({
   );
 
   const toggleSave = () => {
-    // This is not a true save, it just simulates the save state
-    // for the purposes of this dialog
+    // Simulates the save state for the Demo Page
     if (!isSaved) {
       params.set('save', '1');
     }
