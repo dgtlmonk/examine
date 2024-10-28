@@ -5,6 +5,14 @@
 - Provide intuitive collection management to organize saved pages into custom categories
 - Improve user experience through personalized content organization
 
+### :wrench: Setup
+
+Clone this repository, then install dependencies
+
+```bash
+$ npm install
+```
+
 ### 🗃️ Structure
     .
     ├── app                           # Next.js application code
@@ -17,14 +25,6 @@
     │   └── support                  
     │   │   ├── commands.ts           # Cypress Custom Commands
     │   └── screenshots               # Test screenshots
-
-### :wrench: Setup
-
-Clone this repository, then install dependencies
-
-```bash
-$ npm install
-```
 
 ## :boom: Key Features
 
