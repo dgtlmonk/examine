@@ -23,7 +23,7 @@ describe('Manage Page Collections', () => {
     it("should show New Collection dialog form when 'New Collection' button is clicked", () => {
       cy.openCreateCollectionDialog();
 
-      cy.wait(500);
+      cy.wait(200);
       cy.screenshot(`${screenshotFolder}/New Collection Dialog Form`, {
         overwrite: true,
         capture: 'viewport',
@@ -36,7 +36,7 @@ describe('Manage Page Collections', () => {
       cy.wait(500);
       cy.get('[data-cy="create-collection-form"]').submit();
 
-      cy.wait(500);
+      cy.wait(200);
       cy.get('[data-cy="create-error-message"]').should('be.visible');
 
       cy.wait(500);
@@ -48,7 +48,7 @@ describe('Manage Page Collections', () => {
 
     it('should create new collection with valid collection name', () => {
       cy.openEmptyCollectionsDialog();
-      cy.wait(500);
+      cy.wait(200);
 
       cy.screenshot(`${screenshotFolder}/Create Initial State`, {
         overwrite: true,
@@ -66,7 +66,7 @@ describe('Manage Page Collections', () => {
         capture: 'viewport',
       });
 
-      cy.wait(500);
+      cy.wait(200);
       cy.get('[data-cy="collection-item"]').should('have.length', 1);
 
       cy.wait(500);
@@ -79,16 +79,16 @@ describe('Manage Page Collections', () => {
     it('should be able to create more collections', () => {
       cy.openEmptyCollectionsDialog();
 
-      cy.wait(500);
+      cy.wait(200);
       cy.get('[data-cy="create-collection-text-btn"]').click();
 
-      cy.wait(500);
+      cy.wait(200);
       cy.submitWithCollectionName('Cognitive Supplements');
 
-      cy.wait(500);
+      cy.wait(200);
       cy.get('[data-cy="collection-item"]').should('have.length', 1);
 
-      cy.wait(500);
+      cy.wait(200);
       cy.get('[data-cy="create-collection-text-btn"]').click();
 
       cy.submitWithCollectionName('Protein Supplements');
@@ -108,13 +108,13 @@ describe('Manage Page Collections', () => {
     it('should subscribe page to collection when "+" icon next to collection name is clicked', () => {
       cy.openEmptyCollectionsDialog();
 
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="create-collection-text-btn"]').click();
 
-      cy.wait(500);
+      cy.wait(300);
       cy.submitWithCollectionName('Cognitive Supplements');
 
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="collection-item"]').should('have.length', 1);
 
       // screenshot before subscribing
@@ -124,7 +124,7 @@ describe('Manage Page Collections', () => {
         capture: 'viewport',
       });
 
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="subscribe-toggle-btn"]').click();
       cy.get('[data-cy="unsubscribe-icon"]').should('be.visible');
 
@@ -139,13 +139,12 @@ describe('Manage Page Collections', () => {
     it('should unsubscribe page from collection when "-" icon next to collection name is clicked', () => {
       cy.openEmptyCollectionsDialog();
 
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="create-collection-text-btn"]').click();
 
       cy.submitWithCollectionName('Cognitive Supplements');
 
       cy.wait(1500);
-      cy.wait(500);
       cy.get('[data-cy="subscribe-toggle-btn"]').click();
       cy.get('[data-cy="unsubscribe-icon"]').should('be.visible');
 
@@ -155,7 +154,7 @@ describe('Manage Page Collections', () => {
         capture: 'viewport',
       });
 
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="subscribe-toggle-btn"]').click();
       cy.get('[data-cy="subscribe-icon"]').should('be.visible');
 
@@ -167,21 +166,18 @@ describe('Manage Page Collections', () => {
     });
   });
 
-  // describe unsave page from collection
-  // describe unsubscribe page from all collections when page is unsaved
   describe('Unsubscribe Page from All Collections', () => {
     const screenshotFolder = `unsubscribe-page-from-all-collections/`;
 
-    // it should automatically unsubscribe page from any collections it is subscribed to
-    it('should automatically unsubscribe page from any collections it is subscribed to', () => {
+    it('automatically unsubscribe from all collections when page is unsaved', () => {
       cy.openEmptyCollectionsDialog();
 
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="create-collection-text-btn"]').click();
 
       cy.submitWithCollectionName('Cognitive Supplements');
 
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="subscribe-toggle-btn"]').click();
 
       // create another collection and subscribe page to it
@@ -189,7 +185,7 @@ describe('Manage Page Collections', () => {
 
       cy.submitWithCollectionName('Vitality Supplements');
 
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="subscribe-toggle-btn"]').click();
 
       cy.get('[data-cy="subscribe-toggle-btn"]').should('have.length', 2);
@@ -224,13 +220,13 @@ describe('Manage Page Collections', () => {
       cy.get('[data-cy="save-page-to-collection-btn"]').click();
 
       // and check that page is no longer subscribed to any collections while previously created collections are still visible
-      cy.wait(500);
+      cy.wait(300);
       cy.get('[data-cy="collection-item"]').should('have.length', 2);
+
       // no unsubscribe icons should be visible
       cy.get('[data-cy="unsubscribe-icon"]').should('not.exist');
 
-      // screenshot final state
-      cy.wait(500);
+      cy.wait(300);
       cy.screenshot(`${screenshotFolder}/Final State`, {
         overwrite: true,
         capture: 'viewport',
