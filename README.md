@@ -29,8 +29,8 @@ $ npm install
 ## :boom: Key Features
 
 ### Mobile-first Design
-<img width="183" alt="image" src="https://github.com/user-attachments/assets/ce1ddc79-34ce-4a81-a1f2-564e0cdf17cf">
 <img width="181" alt="image" src="https://github.com/user-attachments/assets/7cfe1de4-b597-4ce7-ad13-03870121031f">
+<img width="181" alt="image" src="https://github.com/user-attachments/assets/4be8bc34-f187-4743-914c-94dc1ee4f2d0">
 <img width="181" alt="image" src="https://github.com/user-attachments/assets/f37ac1af-5271-474f-b7c7-008b9addfd8c">
 <img width="181" alt="image" src="https://github.com/user-attachments/assets/709d9fa1-e56e-47df-b52f-b2c2b3c577f9">
 <img width="181" alt="image" src="https://github.com/user-attachments/assets/11ee5708-47ce-4c59-a6e7-f85bdd4b0326">
