@@ -79,7 +79,7 @@ export default function PageCollectionCreateDialog({
 
               <div className="flex items-center space-x-2 pt-2">
                 <Checkbox
-                  data-test-id="saveToNewCollection"
+                  data-cy="save-to-new-collection"
                   id="saveToNewCollection"
                   name="saveToNewCollection"
                   disabled={isPending}
@@ -100,11 +100,12 @@ export default function PageCollectionCreateDialog({
                     variant="secondary"
                   >
                     <p className=" text-slate-500 sm:text-slate-400 group-hover:text-slate-600">
-                      Close
+                      Cancel
                     </p>
                   </Button>
                 </DialogClose>
                 <Button
+                  data-cy="create-collection-save-btn"
                   className="group w-full"
                   variant="secondary"
                   type="submit"

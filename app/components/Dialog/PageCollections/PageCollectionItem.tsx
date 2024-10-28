@@ -16,11 +16,13 @@ export default function PageCollectionItem({
 
   const status = isToggled ? (
     <MinusCircleIcon
+      data-cy="unsubscribe-icon"
       className="text-gray-400 group-hover:text-gray-600"
       strokeWidth={2}
     />
   ) : (
     <PlusCircle
+      data-cy="subscribe-icon"
       className="text-gray-400 group-hover:text-gray-600"
       strokeWidth={2}
     />
@@ -32,9 +34,17 @@ export default function PageCollectionItem({
   };
 
   return (
-    <li data-cy="collection-item" className="flex justify-between items-center text-primary">
+    <li
+      data-cy="collection-item"
+      className="flex justify-between items-center text-primary"
+    >
       <span className="-tracking-2">{name}</span>
-      <Button variant="ghost" className="group" onClick={handleToggle}>
+      <Button
+        data-cy="subscribe-toggle-btn"
+        variant="ghost"
+        className="group"
+        onClick={handleToggle}
+      >
         {status}
       </Button>
     </li>
