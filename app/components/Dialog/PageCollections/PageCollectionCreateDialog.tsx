@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogClose,
@@ -75,6 +76,15 @@ export default function PageCollectionCreateDialog({
                 {error}
               </span>
             )}
+            <span className="flex items-center gap-1 mt-2">
+              <Checkbox id="save-to-collection" name="saveToCollection" />
+              <label
+                htmlFor="save-to-collection"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Save to collection
+              </label>
+            </span>
 
             <DialogFooter className="flex gap-2 mt-4 justify-between w-full">
               <DialogClose asChild>

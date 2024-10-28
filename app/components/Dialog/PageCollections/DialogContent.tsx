@@ -32,7 +32,7 @@ export default function PageDialogContent({ context }: { context: string }) {
       // server action stub
       await new Promise(resolve => setTimeout(resolve, 700));
       const collectionName = formData.get('collectionName');
-
+      const saveToCollection = formData.get('saveToCollection');
       // minimal error check
       if (!collectionName) {
         setError('Collection name is required');
@@ -44,7 +44,7 @@ export default function PageDialogContent({ context }: { context: string }) {
         {
           id: crypto.randomUUID(),
           name: collectionName as string,
-          isSubscribed: false,
+          isSubscribed: saveToCollection === 'on',
         },
       ]);
       createCollectionTriggerRef.current?.click();
