@@ -27,7 +27,6 @@ export default function PageDialogContent({ context }: { context: string }) {
   const _onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const saveToNewCollection = formData.get('saveToNewCollection');
 
     startTransition(async () => {
       // server action stub
@@ -45,7 +44,7 @@ export default function PageDialogContent({ context }: { context: string }) {
         {
           id: crypto.randomUUID(),
           name: collectionName as string,
-          isSubscribed: saveToNewCollection === 'on',
+          isSubscribed: false,
         },
       ]);
       createCollectionTriggerRef.current?.click();

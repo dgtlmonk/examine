@@ -13,7 +13,7 @@ export default function PageCollectionsList({
       {!collections.length ? (
         <div
           data-cy="empty-collection-message"
-          className="h-48  text-sm grid place-items-center text-slate-500"
+          className="h-48 text-center text-sm grid place-items-center text-slate-500"
         >
           You don&apos;t have any collections yet. <br />
           Add one by clicking &quot;New Collection&quot;
