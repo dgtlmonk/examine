@@ -5,6 +5,8 @@ describe('Manage Page Status', () => {
   });
 
   describe('Unsaved Page Status', () => {
+    const screenshotFolder = `unsaved-page-status/`;
+
     it("displays a 'Save Page' button", () => {
       cy.get('button[data-cy="save-page-to-collection-btn"]')
         .contains(/save page/i)
@@ -16,7 +18,7 @@ describe('Manage Page Status', () => {
         .find('svg[data-cy="bookmark-icon"]')
         .should('be.visible');
 
-      cy.screenshot('Unsaved Page - Save Button', {
+      cy.screenshot(`${screenshotFolder}/Default State`, {
         overwrite: true,
         capture: 'viewport',
       });
@@ -24,10 +26,11 @@ describe('Manage Page Status', () => {
   });
 
   describe('Saved Page Status', () => {
+    const screenshotFolder = `saved-page-status/`;
+
     it('toggles the "Save Page" button text to "Page Saved" on click', () => {
       cy.get('button[data-cy="save-page-to-collection-btn"]').click();
 
-      // close the dialog
       cy.wait(500);
       cy.get('button[data-cy="sheet-close-btn"]').click();
 
@@ -36,7 +39,7 @@ describe('Manage Page Status', () => {
         .should('be.visible');
 
       cy.wait(500);
-      cy.screenshot('Saved Page - Save Button', {
+      cy.screenshot(`${screenshotFolder}/Saved Page State`, {
         overwrite: true,
         capture: 'viewport',
       });
@@ -63,7 +66,7 @@ describe('Manage Page Status', () => {
       cy.get('button[data-cy="save-page-to-collection-btn"]').click();
       cy.get('[data-cy="page-saved-text"]').should('be.visible');
 
-      cy.screenshot('Saved Page - Dialog', {
+      cy.screenshot(`${screenshotFolder}/Saved Page Dialog`, {
         overwrite: true,
         capture: 'viewport',
       });
@@ -78,7 +81,7 @@ describe('Manage Page Status', () => {
       cy.contains(/page saved/i).should('be.visible');
 
       cy.wait(500);
-      cy.screenshot('Unsaved Page Action - Before', {
+      cy.screenshot(`${screenshotFolder}/Unsaved Page Action - Initial State`, {
         overwrite: true,
         capture: 'viewport',
       });
@@ -86,13 +89,10 @@ describe('Manage Page Status', () => {
       cy.contains(/page saved/i).click();
 
       cy.wait(500);
-
-      cy.screenshot(
-        'Unsaved Page Action - (During) Dialog Bookmark Check clicked',
-        {
-          overwrite: true,
-          capture: 'viewport',
-        });
+      cy.screenshot(`${screenshotFolder}/Unsaved Page Action - Final State`, {
+        overwrite: true,
+        capture: 'viewport',
+      });
 
       cy.get('[data-cy="unsave-page-btn"]').click();
 
@@ -100,7 +100,7 @@ describe('Manage Page Status', () => {
       cy.contains(/page saved/i).should('not.exist');
       cy.contains(/save page/i).should('be.visible');
 
-      cy.screenshot('Unsaved Page Action - After', {
+      cy.screenshot(`${screenshotFolder}/Unsaved Page Action - Final State`, {
         overwrite: true,
         capture: 'viewport',
       });
