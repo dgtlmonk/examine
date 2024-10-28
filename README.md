@@ -31,13 +31,17 @@ $ npm install
 ```bash
 $ npm run test
 ```
-<img width="473" alt="image" src="https://github.com/user-attachments/assets/13cb5053-7790-4549-9e93-1c283e8eb590">
+<img width="472" alt="image" src="https://github.com/user-attachments/assets/042c2c98-7e41-4004-991a-cbaee69084f7">
+
+<img width="462" alt="image" src="https://github.com/user-attachments/assets/3497a233-c13d-4e4a-8500-001a8b4a4408">
 
 
-#### Headed Mode - Browser or Electron (preferred)
+#### Headed Mode - Browser or Electron 
 ```bash
 $ npm run cy:open
 ```
+![Uploading image.png…]()
+
 <img width="548" alt="image" src="https://github.com/user-attachments/assets/4d95cb71-7c96-4660-84f0-809c4ebccfdf">
 
 
