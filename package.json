@@ -9,7 +9,7 @@
     "lint": "next lint",
     "cy:open": "cypress open",
     "add:ui": "npx shadcn@latest add ",
-    "test": "cypress run --spec 'cypress/e2e/all-spec.cy.ts'"
+    "test": "cypress run"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.2",
