@@ -18,6 +18,7 @@ export default function PageDialogContent({ context }: { context: string }) {
   const [collections, setCollections] = useState<TPageCollection[] | []>([]);
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+
   const { replace } = useRouter();
   const { params, pathname } = useQueryParams();
 
@@ -33,6 +34,7 @@ export default function PageDialogContent({ context }: { context: string }) {
       await new Promise(resolve => setTimeout(resolve, 700));
       const collectionName = formData.get('collectionName');
       const saveToCollection = formData.get('saveToCollection');
+
       // minimal error check
       if (!collectionName) {
         setError('Collection name is required');
