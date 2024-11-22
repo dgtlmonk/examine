@@ -31,10 +31,12 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.5.9",
+    "@axe-core/watcher": "^3.16.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "cypress": "^13.15.0",
+    "cypress-axe": "^1.5.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.0",
     "postcss": "^8",
