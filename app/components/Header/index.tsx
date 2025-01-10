@@ -10,9 +10,12 @@ export default function Header() {
             className="hover:bg-examine-purple-400 active:bg-examine-purple-800 flex h-[30px] w-8 items-center gap-1 rounded bg-examine-purple-medium p-1.5 text-base  lg:hidden"
             aria-label="Open menu"
           >
-            <Menu className="text-white" />
+            <Menu className="text-white" aria-hidden="true" />
           </button>
-          <div className="cursor-pointer lg:px-6">
+          <button
+            className="cursor-pointer lg:px-6"
+            aria-label="Go to Homepage"
+          >
             <svg
               width="700"
               height="144"
@@ -21,6 +24,9 @@ export default function Header() {
               fill="#6F468E"
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-18 fill-white lg:h-8 lg:w-25 lg:fill-primary 2xl:w-36"
+              role="img"
+              aria-label="Examine Logo"
+              aria-hidden="true"
             >
               <g clipPath="url(#clip0_12_7)">
                 <path d="M83.5313 19.8714H22.8042V53.6529H81.7675V73.6412H22.8042V120.631H83.5313V140.503H0V0H83.5313V19.8714Z"></path>
@@ -38,7 +44,7 @@ export default function Header() {
                 </clipPath>
               </defs>
             </svg>
-          </div>
+          </button>
         </div>
         <div
           className="xl:text-menu hidden items-center pr-8 text-sm lg:flex"
@@ -51,7 +57,10 @@ export default function Header() {
             className="relative z-10 flex max-w-max flex-1 items-center justify-center"
           >
             <div className="relative">
-              <button className="group inline-flex h-10 w-max items-center justify-center whitespace-nowrap rounded-md px-4 py-2">
+              <button
+                aria-label="Main Menu"
+                className="group inline-flex h-10 w-max items-center justify-center whitespace-nowrap rounded-md px-4 py-2"
+              >
                 <svg
                   width="26"
                   height="25"

@@ -19,12 +19,14 @@ export default function PageCollectionItem({
       data-cy="unsubscribe-icon"
       className="text-gray-400 group-hover:text-gray-600"
       strokeWidth={2}
+      aria-hidden="true"
     />
   ) : (
     <PlusCircle
       data-cy="subscribe-icon"
       className="text-gray-400 group-hover:text-gray-600"
       strokeWidth={2}
+      aria-hidden="true"
     />
   );
 
@@ -40,6 +42,9 @@ export default function PageCollectionItem({
     >
       <span className="-tracking-2">{name}</span>
       <Button
+        aria-label={
+          isToggled ? 'Remove Page from Collection' : 'Add Page to Collection'
+        }
         data-cy="subscribe-toggle-btn"
         variant="ghost"
         className="group"

@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import 'cypress-axe';
 
 Cypress.Commands.add('openEmptyCollectionsDialog', () => {
   cy.get('[data-cy="save-page-to-collection-btn"]').click();

@@ -1,6 +1,7 @@
 import { inter, lora } from '@/theme/default/fonts';
 import '@/theme/default/globals.css';
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Examine',
@@ -22,6 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script src="/inp.js" strategy="afterInteractive" />
       <body className={`${lora.variable} ${inter.className} antialiased`}>
         {children}
       </body>
