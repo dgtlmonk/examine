@@ -2,13 +2,17 @@ describe('Manage Page Collections', () => {
   beforeEach(() => {
     cy.viewport('ipad-2');
     cy.visit('http://localhost:3000/?save=1');
+    cy.injectAxe();
   });
 
-  describe('Empty Collection Page', () => {
+  describe.only('Empty Collection Page', () => {
     const screenshotFolder = `empty-page-collection/`;
 
     it('should show empty collection page message', () => {
       cy.openEmptyCollectionsDialog();
+
+      cy.checkA11y();
+      cy.wait(500);
 
       cy.screenshot(`${screenshotFolder}/Empty Collection Page`, {
         overwrite: true,

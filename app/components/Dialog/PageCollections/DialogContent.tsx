@@ -3,6 +3,7 @@
 import {
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
@@ -14,6 +15,7 @@ import { FormEvent, useRef, useState, useTransition } from 'react';
 import PageCollectionCreateDialog from './PageCollectionCreateDialog';
 import PageCollectionsList from './PageCollectionsList';
 import { TPageCollection } from './types';
+
 export default function PageDialogContent({ context }: { context: string }) {
   const [collections, setCollections] = useState<TPageCollection[] | []>([]);
   const [isPending, startTransition] = useTransition();
@@ -88,6 +90,9 @@ export default function PageDialogContent({ context }: { context: string }) {
         <SheetTitle className="-mt-2 flex items-center gap-1  font-semibold text-primary text-ellipsis">
           <p className="whitespace-nowrap truncate">Saved Page - {context}</p>
         </SheetTitle>
+        <SheetDescription>
+          Manage your saved pages and collection preferences.
+        </SheetDescription>
       </SheetHeader>
 
       <div className="flex flex-col gap-4">
@@ -110,13 +115,21 @@ export default function PageDialogContent({ context }: { context: string }) {
                   className="text-blue-500"
                   width={24}
                   height={24}
+                  aria-hidden="true"
                 />
               </button>
             </SheetClose>
           </span>
           <span className="flex items-center justify-between text-primary text-[.9rem]">
-            Get updates
-            <Switch data-cy="get-updates-switch" defaultChecked={true} />
+            <label htmlFor="updates-switch" className="cursor-pointer">
+              Get updates
+            </label>
+            <Switch
+              id="updates-switch"
+              data-cy="get-updates-switch"
+              defaultChecked={true}
+              aria-label="Toggle updates for this page"
+            />
           </span>
         </div>
 

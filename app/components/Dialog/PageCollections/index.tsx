@@ -17,6 +17,7 @@ export default function PageCollectionsDialog({
 }) {
   const { replace } = useRouter();
   const { params, pathname } = useQueryParams();
+
   const isSaved = params.get('save') === '1';
 
   const status = isSaved ? (
@@ -49,6 +50,7 @@ export default function PageCollectionsDialog({
       <DialogTrigger asChild>
         <Button
           data-cy="save-page-to-collection-btn"
+          aria-label="Save Page"
           variant="secondary"
           onClick={toggleSave}
         >

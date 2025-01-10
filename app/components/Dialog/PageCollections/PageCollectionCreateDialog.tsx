@@ -4,6 +4,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -35,6 +36,7 @@ export default function PageCollectionCreateDialog({
             ref={triggerRef}
             data-cy="create-collection-text-btn"
             variant="ghost"
+            aria-label="Create New Collection"
           >
             New Collection
           </Button>
@@ -42,6 +44,9 @@ export default function PageCollectionCreateDialog({
         <DialogContent className="sm:max-w-md rounded-md">
           <DialogHeader>
             <DialogTitle>New Collection</DialogTitle>
+            <DialogDescription>
+              Create a new collection to organize your saved pages.
+            </DialogDescription>
           </DialogHeader>
           <div className="w-full">
             <form
@@ -97,6 +102,7 @@ export default function PageCollectionCreateDialog({
                     type="button"
                     className="group w-full "
                     variant="secondary"
+                    aria-label="Cancel Creating Collection"
                   >
                     <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
                       Cancel
@@ -108,6 +114,7 @@ export default function PageCollectionCreateDialog({
                   className="group w-full"
                   variant="secondary"
                   type="submit"
+                  aria-label="Save New Collection"
                 >
                   <p className=" text-slate-500  group-hover:text-slate-800 group-hover:font-semibold">
                     Save
