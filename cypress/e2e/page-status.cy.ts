@@ -1,16 +1,44 @@
+// Define at the top of the spec file or just import it
+function terminalLog(violations) {
+  cy.task(
+    'log',
+    `${violations.length} accessibility violation${
+      violations.length === 1 ? '' : 's'
+    } ${violations.length === 1 ? 'was' : 'were'} detected`,
+  );
+  // pluck specific keys to keep the table readable
+  const violationData = violations.map(
+    ({ id, impact, description, nodes }) => ({
+      id,
+      impact,
+      description,
+      nodes: nodes.length,
+    }),
+  );
+
+  console.table(violationData);
+}
+
 describe('Manage Page Status', () => {
   beforeEach(() => {
     cy.viewport('ipad-2');
     cy.visit('http://localhost:3000/');
+    cy.injectAxe();
   });
 
-  describe('Unsaved Page Status', () => {
+  describe.only('Unsaved Page Status', () => {
     const screenshotFolder = `unsaved-page-status/`;
+    // Then in your test...
+    it.only('Logs violations to the terminal', () => {
+      cy.checkA11y(null, null, terminalLog);
+    });
 
     it("displays a 'Save Page' button", () => {
       cy.get('button[data-cy="save-page-to-collection-btn"]')
         .contains(/save page/i)
         .should('be.visible');
+
+      cy.checkA11y(null, null, terminalLog);
     });
 
     it('shows Bookmark icon within the "Save Page" button', () => {
